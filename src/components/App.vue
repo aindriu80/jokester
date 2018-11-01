@@ -1,17 +1,22 @@
 <template>
     <div id="app">
     <button class="btn btn-primary" @click="initJokes">Add Ten Random Jokes</button>
-        <h3>Got Jokes ?</h3>
-        <div class="">
-            {{$store.state}}
-        </div>
-         
+    <br><br>
+    <div class="col-md-12">
+        <Joke 
+        v-for="(joke, index) in $store.state.jokes"
+        :joke="joke"
+        key="index"
+        />
+    </div>        
     </div>
 </template>
 
 <script>
 import { mapActions } from "vuex";
+import Joke from "./Joke.vue";
 export default {
-  methods: mapActions(["initJokes"])
+  methods: mapActions(["initJokes"]),
+  components: { Joke }
 };
 </script>
